@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+</head>
+<body>
+    <h1>Articles</h1>
+
+    <!-- Filter Form -->
+    <form method="GET" action="/articles">
+        <input type="text" name="keyword" placeholder="Search by keyword">
+        <input type="date" name="date">
+        <select name="topic">
+            <option value="">Select Topic</option>
+            <% topics.forEach(topic => { %>
+                <option value="<%= topic.name %>"><%= topic.name %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    
+
+    <!-- Display Articles -->
+    <ul>
+        <% articles.forEach(article => { %>
+            <li>
+                <h2><%= article.title %></h2>
+                <p><%= article.description %></p>
+                <p><strong>Publication Date:</strong> <%= article.publication_date.toDateString() %></p>
+                <a href="<%= article.source_url %>">Read more</a>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
